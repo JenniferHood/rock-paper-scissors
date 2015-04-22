@@ -17,7 +17,7 @@ get('/results') do
   elsif @player.beats?(@computer).eql?("tie")
     @results_message = "It's a tie!"
   else
-    @results_message = "That't not an acceptable choice"
+    @results_message = "That's not an acceptable choice"
   end
   erb(:result)
 end
