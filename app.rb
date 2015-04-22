@@ -6,22 +6,18 @@ get('/') do
   erb(:index)
 end
 
-get('/player2') do
-  @player1 = params.fetch('player1')
-  erb(:player2)
-end
-
 get('/results') do
-  player1 = params.fetch('player1')
-  player2 = params.fetch('player2')
-  if player1.beats?(player2).eql?(true)
-    @results = 'Player 1 wins!'
-  elsif player2.beats?(player1).eql?(true)
-    @results = 'Player 2 wins!'
-  elsif player2.beats?(player1).eql?('tie')
-    @results = "It's a tie!"
+  choices = ['rock', 'paper', 'scissors']
+  @player = params.fetch('player')
+  @computer = choices.sample()
+  if @player.beats?(@computer).eql?(true)
+    @results_message = "Player wins!"
+  elsif @computer.beats?(@player).eql?(true)
+    @results_message = "Computer wins!"
+  elsif @player.beats?(@computer).eql?("tie")
+    @results_message = "It's a tie!"
   else
-    @results = "Those weren't options!"
+    @results_message = "That't not an acceptable choice"
   end
   erb(:result)
 end
