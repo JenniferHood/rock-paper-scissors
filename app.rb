@@ -12,6 +12,12 @@ get('/player2') do
 end
 
 get('/results') do
-
+  player1 = params.fetch('player1')
+  player2 = params.fetch('player2')
+  if player1.beats?(player2)
+    @results = 'Player 1 wins!'
+  else
+    @results = 'Player 2 wins!'
+  end
   erb(:result)
 end
